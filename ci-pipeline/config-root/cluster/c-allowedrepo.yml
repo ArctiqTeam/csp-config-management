@@ -6,7 +6,7 @@ spec:
   match:
     kinds:
       - apiGroups: [""]
-        kinds: ["Pod"]
+        kinds: ["Pod","Deployment"]
     excludedNamespaces:
       - istio-system
       - kube-system
