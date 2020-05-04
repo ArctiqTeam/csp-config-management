@@ -1,0 +1,17 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: prod-repo-list
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    excludedNamespaces:
+      - istio-system
+      - kube-system
+      - gatekeeper-system
+      - config-management-system
+  parameters:
+    repos:
+      - gcr.io
