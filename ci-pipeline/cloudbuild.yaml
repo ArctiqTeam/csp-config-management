@@ -19,6 +19,15 @@ steps:
 # Grant read/write permissions to the workspace.
 - name: 'bash'
   args: ['chmod', '777', '/workspace']
+# Check config directory for any syntax errors
+- name: 'gcr.io/config-management-release/nomos:stable'
+  args: ['nomos', 'vet', '--path', '/workspace/ci-pipeline/config-root']
+  volumes:
+  - name: 'kube'
+    path: '/kube'
+  env:
+  - 'KUBECONFIG=/kube/config'
+  timeout: 30s
 # Run nomos hydrate on the config-root directory and output the result into hydrated-configs.
 - name: 'gcr.io/config-management-release/nomos'
   args: ['nomos', 'hydrate', '--path', '/workspace/ci-pipeline/config-root', '--output', '/workspace/hydrated-configs']
