@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: memory-demo
 spec:
-    containers:
+  containers:
   - name: memory-demo-ctr
     image: polinux/stress
     resources:
